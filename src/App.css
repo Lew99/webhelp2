@@ -1,0 +1,35 @@
+/* Customize your main colors in :root variables */
+:root {
+  --main-background: url(C:\Users\Admin\Desktop\project\candy-machine-v2-responsive-ui\src\background.png);
+  --main-background-color: #1b1b1b;
+  --card-background-color: #51576D;
+  --card-background-lighter-color: #7A7F92;
+  --main-text-color:#F7F6F4;
+  --title-text-color:#3CBA8B;
+}
+
+body{
+  background-color:var(--main-background-color);
+  background-image:var(--main-background);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size:cover;
+  -o-background-size: cover;
+  
+  font-family: Akira;
+  font-size: 1.2em;
+}
+
+h2, p{
+  color: var(--main-text-color);
+}
+
+h3{
+font-weight: normal;
+}
+
+
+
