@@ -7,8 +7,8 @@ import {useAnchorWallet} from "@solana/wallet-adapter-react";
 import {WalletMultiButton} from "@solana/wallet-adapter-react-ui";
 import {GatewayProvider} from '@civic/solana-gateway-react';
 import Countdown from "react-countdown";
-import {Snackbar, Paper, LinearProgress, Chip} from "@material-ui/core";
-import Alert from "@material-ui/lab/Alert";
+// import {Snackbar, Paper, LinearProgress, Chip} from "@material-ui/core";
+//import Alert from "@material-ui/lab/Alert";
 import {toDate, AlertState, getAtaForMint} from './utils';
 import {MintButton} from './MintButton';
 import {
@@ -18,10 +18,11 @@ import {
     mintOneToken,
     CANDY_MACHINE_PROGRAM,
 } from "./candy-machine";
+import { LinearProgress, Paper } from "@material-ui/core";
 
 const cluster = process.env.REACT_APP_SOLANA_NETWORK!.toString();
 const decimals = process.env.REACT_APP_SPL_TOKEN_TO_MINT_DECIMALS ? +process.env.REACT_APP_SPL_TOKEN_TO_MINT_DECIMALS!.toString() : 9;
-const splTokenName = process.env.REACT_APP_SPL_TOKEN_TO_MINT_NAME ? process.env.REACT_APP_SPL_TOKEN_TO_MINT_NAME.toString() : "TOKEN";
+// const splTokenName = process.env.REACT_APP_SPL_TOKEN_TO_MINT_NAME ? process.env.REACT_APP_SPL_TOKEN_TO_MINT_NAME.toString() : "TOKEN";
 
 const WalletContainer = styled.div`
   display: flex;
@@ -30,7 +31,7 @@ const WalletContainer = styled.div`
   justify-content: center;
 `;
 
-const WalletAmount = styled.div`
+/*const WalletAmount = styled.div`
   color: black;
   width: auto;
   padding: 5px 5px 5px 16px;
@@ -54,13 +55,13 @@ const WalletAmount = styled.div`
   vertical-align: middle;
   justify-content: flex-start;
   gap: 10px;
-`;
+`;*/
 
-const Wallet = styled.ul`
+/* const Wallet = styled.ul`
   flex: 0 0 auto;
   margin: 0;
   padding: 0;
-`;
+`; */
 
 const ConnectButton = styled(WalletMultiButton)`
 border-radius: 28px !important;
@@ -80,17 +81,18 @@ top: 65%;
 left: 50%;
 `;
 
-const NFT = styled(Paper)`
+/*const NFT = styled(Paper)`
   min-width: 400px;
   padding: 5px 20px 20px 20px;
   flex: 1 1 auto;
   background-color: var(--card-background-color) !important;
 
-`;
-const Des = styled(NFT)`
+`; */
+
+/* const Des = styled(NFT)`
   text-align: left;
   padding-top: 0px;
-`;
+`; */
 
 const Card = styled(Paper)`
   display: inline-block;
@@ -236,19 +238,19 @@ const DesContainer = styled.div`
   gap: 20px;
 `;
 
-const Price = styled(Chip)`
+/*const Price = styled(Chip)`
   position: absolute;
   margin: 5px;
   font-weight: bold;
   font-size: 1em !important;
-`;
+`; */
 
-const Image = styled.img`
+/* const Image = styled.img`
   height: 400px;
   width: auto;
   border-radius: 7px;
   box-shadow: 5px 5px 40px 5px rgba(0,0,0,0.5);
-`;
+`;*/
 
 const BorderLinearProgress = styled(LinearProgress)`
   margin: 20px 0;
@@ -268,7 +270,7 @@ const BorderLinearProgress = styled(LinearProgress)`
   }
 `;
 
-const ShimmerTitle = styled.h1`
+/* const ShimmerTitle = styled.h1`
   margin: 50px auto;
   text-transform: uppercase;
   animation: glow 2s ease-in-out infinite alternate;
@@ -281,14 +283,14 @@ const ShimmerTitle = styled.h1`
       text-shadow: 0 0 30px var(--title-text-color), 0 0 10px var(--title-text-color);
     }
   }
-`;
+`;*/
 
 
-const GoldTitle = styled.h2`
+/* const GoldTitle = styled.h2`
   color: var(--title-text-color);
-`;
+`;*/
 
-const LogoAligner = styled.div`
+/*const LogoAligner = styled.div`
   display: flex;
   align-items: center;
 
@@ -296,7 +298,7 @@ const LogoAligner = styled.div`
     max-height: 35px;
     margin-right: 10px;
   }
-`;
+`;*/
 
 const LiganHeader = styled.h1`
   display: flex; 
@@ -342,12 +344,12 @@ const Home = (props: HomeProps) => {
     const [isSoldOut, setIsSoldOut] = useState(false);
     const [payWithSplToken, setPayWithSplToken] = useState(false);
     const [price, setPrice] = useState(0);
-    const [priceLabel, setPriceLabel] = useState<string>("SOL");
+    /*const [priceLabel, setPriceLabel] = useState<string>("SOL");*/
     const [whitelistPrice, setWhitelistPrice] = useState(0);
     const [whitelistEnabled, setWhitelistEnabled] = useState(false);
     const [whitelistTokenBalance, setWhitelistTokenBalance] = useState(0);
 
-    const [alertState, setAlertState] = useState<AlertState>({
+    const [, setAlertState] = useState<AlertState>({
         open: false,
         message: "",
         severity: undefined,
@@ -383,7 +385,7 @@ const Home = (props: HomeProps) => {
                 setPayWithSplToken(true);
                 // Customize your SPL-TOKEN Label HERE
                 // TODO: get spl-token metadata name
-                setPriceLabel(splTokenName);
+                // setPriceLabel(splTokenName);
                 setPrice(cndy.state.price.toNumber() / divider);
                 setWhitelistPrice(cndy.state.price.toNumber() / divider);
             }else {
@@ -686,18 +688,6 @@ const Home = (props: HomeProps) => {
                     </DesContainer> */}
                 </MintContainer>
             </MainContainer>
-            <Snackbar
-                open={alertState.open}
-                autoHideDuration={6000}
-                onClose={() => setAlertState({...alertState, open: false})}
-            >
-                <Alert
-                    onClose={() => setAlertState({...alertState, open: false})}
-                    severity={alertState.severity}
-                >
-                    {alertState.message}
-                </Alert>
-            </Snackbar>
         </main>
     );
 };
